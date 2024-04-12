@@ -1,0 +1,74 @@
+apiVersion: machine.openshift.io/v1beta1
+kind: MachineSet
+metadata:
+  annotations:
+    capacity.cluster-autoscaler.kubernetes.io/labels: kubernetes.io/arch=amd64
+    machine.openshift.io/GPU: "0"
+    machine.openshift.io/memoryMb: "16384"
+    machine.openshift.io/vCPU: "4"
+  creationTimestamp: "2024-04-12T15:05:35Z"
+  generation: 1
+  labels:
+    machine.openshift.io/cluster-api-cluster: ci-ln-nilr03t-76ef8-2x2x8
+  name: new-demo-machineset
+  namespace: openshift-machine-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      machine.openshift.io/cluster-api-cluster: ci-ln-nilr03t-76ef8-2x2x8
+      machine.openshift.io/cluster-api-machineset: new-demo-machineset
+  template:
+    metadata:
+      labels:
+        machine.openshift.io/cluster-api-cluster: ci-ln-nilr03t-76ef8-2x2x8
+        machine.openshift.io/cluster-api-machine-role: worker
+        machine.openshift.io/cluster-api-machine-type: worker
+        machine.openshift.io/cluster-api-machineset: new-demo-machineset
+    spec:
+      lifecycleHooks: {}
+      metadata: {}
+      providerSpec:
+        value:
+          ami:
+            id: ami-07b4d7a131ccfd6ad
+          apiVersion: machine.openshift.io/v1beta1
+          blockDevices:
+          - ebs:
+              encrypted: true
+              iops: 0
+              kmsKey:
+                arn: ""
+              volumeSize: 120
+              volumeType: gp3
+          credentialsSecret:
+            name: aws-cloud-credentials
+          deviceIndex: 0
+          iamInstanceProfile:
+            id: ci-ln-nilr03t-76ef8-2x2x8-worker-profile
+          instanceType: m6a.xlarge
+          kind: AWSMachineProviderConfig
+          metadata:
+            creationTimestamp: null
+          metadataServiceOptions: {}
+          placement:
+            availabilityZone: us-west-2d
+            region: us-west-2
+          securityGroups:
+          - filters:
+            - name: tag:Name
+              values:
+              - ci-ln-nilr03t-76ef8-2x2x8-worker-sg
+          spotMarketOptions: {}
+          subnet:
+            filters:
+            - name: tag:Name
+              values:
+              - ci-ln-nilr03t-76ef8-2x2x8-private-us-west-2d
+          tags:
+          - name: kubernetes.io/cluster/ci-ln-nilr03t-76ef8-2x2x8
+            value: owned
+          - name: expirationDate
+            value: 2024-04-12T22:54+00:00
+          userDataSecret:
+            name: worker-user-data
