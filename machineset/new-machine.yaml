@@ -13,7 +13,7 @@ metadata:
   name: new-demo-machineset
   namespace: openshift-machine-api
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       machine.openshift.io/cluster-api-cluster: ci-ln-nilr03t-76ef8-2x2x8
