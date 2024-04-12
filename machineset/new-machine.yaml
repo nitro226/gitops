@@ -7,7 +7,7 @@ metadata:
     machine.openshift.io/memoryMb: "16384"
     machine.openshift.io/vCPU: "4"
   creationTimestamp: "2024-04-12T15:05:35Z"
-  generation: 1
+  generation: 7
   labels:
     machine.openshift.io/cluster-api-cluster: ci-ln-nilr03t-76ef8-2x2x8
   name: new-demo-machineset
