@@ -26,7 +26,7 @@ spec:
         app: hello-ocp
     spec:
       containers:
-      - image: quay.io/openshifttest/hello-openshift
+      - image: registry.redhat.io/openshift4/ose-hello-openshift-rhel8
         name: hello-ocp
 ---
 apiVersion: v1
