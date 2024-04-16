@@ -27,6 +27,7 @@ spec:
     spec:
       containers:
       - image: quay.io/openshifttest/hello-openshift
+        name: hello-ocp
 ---
 apiVersion: v1
 kind: Service
