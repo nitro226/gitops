@@ -6,8 +6,6 @@ metadata:
     machine.openshift.io/GPU: "0"
     machine.openshift.io/memoryMb: "16384"
     machine.openshift.io/vCPU: "4"
-  creationTimestamp: "2024-04-17T18:09:58Z"
-  generation: 1
   labels:
     machine.openshift.io/cluster-api-cluster: hubcluster-n76v7
   name: new-demo-machineset
