@@ -6,22 +6,22 @@ metadata:
     machine.openshift.io/GPU: "0"
     machine.openshift.io/memoryMb: "16384"
     machine.openshift.io/vCPU: "4"
-  creationTimestamp: "2024-04-12T15:05:35Z"
-  generation: 7
+  creationTimestamp: "2024-04-17T18:09:58Z"
+  generation: 1
   labels:
-    machine.openshift.io/cluster-api-cluster: ci-ln-nilr03t-76ef8-2x2x8
+    machine.openshift.io/cluster-api-cluster: hubcluster-n76v7
   name: new-demo-machineset
   namespace: openshift-machine-api
 spec:
   replicas: 1
   selector:
     matchLabels:
-      machine.openshift.io/cluster-api-cluster: ci-ln-nilr03t-76ef8-2x2x8
+      machine.openshift.io/cluster-api-cluster: hubcluster-n76v7
       machine.openshift.io/cluster-api-machineset: new-demo-machineset
   template:
     metadata:
       labels:
-        machine.openshift.io/cluster-api-cluster: ci-ln-nilr03t-76ef8-2x2x8
+        machine.openshift.io/cluster-api-cluster: hubcluster-n76v7
         machine.openshift.io/cluster-api-machine-role: worker
         machine.openshift.io/cluster-api-machine-type: worker
         machine.openshift.io/cluster-api-machineset: new-demo-machineset
@@ -31,44 +31,41 @@ spec:
       providerSpec:
         value:
           ami:
-            id: ami-07b4d7a131ccfd6ad
+            id: ami-049d8fda91038a0fd
           apiVersion: machine.openshift.io/v1beta1
           blockDevices:
           - ebs:
               encrypted: true
-              iops: 0
+              iops: 2000
               kmsKey:
                 arn: ""
-              volumeSize: 120
-              volumeType: gp3
+              volumeSize: 500
+              volumeType: io1
           credentialsSecret:
             name: aws-cloud-credentials
           deviceIndex: 0
           iamInstanceProfile:
-            id: ci-ln-nilr03t-76ef8-2x2x8-worker-profile
-          instanceType: m6a.xlarge
+            id: hubcluster-n76v7-worker-profile
+          instanceType: m5.xlarge
           kind: AWSMachineProviderConfig
           metadata:
             creationTimestamp: null
           metadataServiceOptions: {}
           placement:
-            availabilityZone: us-west-2d
-            region: us-west-2
+            availabilityZone: us-east-2c
+            region: us-east-2
           securityGroups:
           - filters:
             - name: tag:Name
               values:
-              - ci-ln-nilr03t-76ef8-2x2x8-worker-sg
-          spotMarketOptions: {}
+              - hubcluster-n76v7-worker-sg
           subnet:
             filters:
             - name: tag:Name
               values:
-              - ci-ln-nilr03t-76ef8-2x2x8-private-us-west-2d
+              - hubcluster-n76v7-private-us-east-2c
           tags:
-          - name: kubernetes.io/cluster/ci-ln-nilr03t-76ef8-2x2x8
+          - name: kubernetes.io/cluster/hubcluster-n76v7
             value: owned
-          - name: expirationDate
-            value: 2024-04-12T22:54+00:00
           userDataSecret:
             name: worker-user-data
